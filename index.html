@@ -1,0 +1,270 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Abhishek Kumar — Cyberpunk Portfolio (Single-file)</title>
+
+  <!-- Tailwind CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <!-- GSAP & Three.js -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+
+  <style>
+    /* Basic resets + dark neon */
+    html,body{height:100%;margin:0;background:#020006;color:#e6e1ff;font-family:Inter,system-ui,-apple-system,"Segoe UI",Roboto,"Helvetica Neue",Arial}
+    a{color:inherit}
+    /* Canvas full-screen */
+    #three-bg{position:fixed;inset:0;width:100vw;height:100vh;z-index:0;display:block}
+    /* page container */
+    .page{position:relative;z-index:10;min-height:100vh}
+    .nav-backdrop{backdrop-filter: blur(6px);background:rgba(5,2,10,0.25);border-bottom:1px solid rgba(127,0,255,0.08)}
+    .neon-title{font-weight:800;text-shadow:0 0 8px rgba(30, 4, 63, 0.18),0 0 30px rgba(127,0,255,0.12)}
+    .section-title{font-size:2.25rem;font-weight:700;color:#d9caff;text-shadow:0 0 10px rgba(127,0,255,0.08)}
+    /* neon buttons */
+    .btn-neon{background:linear-gradient(90deg,#6e00ff33,#a14bff22);border:1px solid rgba(157,75,255,0.18);padding:.6rem 1rem;border-radius:12px}
+    /* neon cursor */
+    #cursor, #cursor2{position:fixed;pointer-events:none;transform:translate(-50%,-50%);border-radius:50%;z-index:9999}
+    #cursor{width:14px;height:14px;background:rgba(157,75,255,1);box-shadow:0 0 16px rgba(157,75,255,0.9)}
+    #cursor2{width:40px;height:40px;background:rgba(157,75,255,0.12);box-shadow:0 0 28px rgba(157,75,255,0.45)}
+    /* responsive tweaks */
+    @media (max-width:768px){
+      .section-title{font-size:1.6rem}
+      .hero-title{font-size:2.25rem}
+    }
+    /* smooth scroll fallback */
+    html{scroll-behavior:smooth}
+  </style>
+</head>
+<body>
+
+  <!-- Cursor -->
+  <div id="cursor"></div>
+  <div id="cursor2"></div>
+
+  <!-- Three.js canvas -->
+  <canvas id="three-bg"></canvas>
+
+  <!-- NAV -->
+  <nav class="nav-backdrop fixed top-0 left-0 right-0 z-20">
+    <div class="max-w-6xl mx-auto px-6 py-3 flex items-center justify-between">
+      <div class="flex items-center gap-3">
+        <div class="w-10 h-10 rounded-md" style="background:linear-gradient(135deg,#7f00ff,#4b00ff);box-shadow:0 4px 24px rgba(127,0,255,0.2)"></div>
+        <div class="neon-title">Abhishek</div>
+      </div>
+
+      <ul class="hidden md:flex gap-8 text-purple-200">
+        <li><a href="#home" class="hover:text-white">Home</a></li>
+        <li><a href="#about" class="hover:text-white">About</a></li>
+        <li><a href="#skills" class="hover:text-white">Skills</a></li>
+        <li><a href="#experience" class="hover:text-white">Experience</a></li>
+        <li><a href="#contact" class="hover:text-white">Contact</a></li>
+      </ul>
+
+      <div class="flex items-center gap-3">
+        <!-- Note: Put resume.pdf in same folder as this file -->
+        <a class="btn-neon text-white" href="resume.pdf" download>Download Resume</a>
+      </div>
+    </div>
+  </nav>
+
+  <!-- MAIN -->
+  <main class="page">
+
+    <!-- HERO -->
+    <section id="home" class="min-h-screen flex items-center justify-center">
+      <div class="max-w-4xl mx-auto px-6 text-center">
+        <h1 class="hero-title text-6xl neon-title mb-4">Abhishek Kumar</h1>
+        <p class="text-xl text-purple-200 mb-6">Cybersecurity • Web Developer • Three.js Artist</p>
+        <div class="flex items-center justify-center gap-4">
+          <a href="#about" class="btn-neon text-white">Explore</a>
+          <a href="#contact" class="btn-neon text-white">Contact</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- ABOUT -->
+    <section id="about" class="py-24">
+      <div class="max-w-4xl mx-auto px-6">
+        <h2 class="section-title">About Me</h2>
+        <p class="mt-6 text-lg text-purple-200 leading-relaxed">
+          Proactive and detail-oriented Computer Science undergraduate with strong cybersecurity,
+          ethical hacking, and web development skills. Experienced with Three.js, GSAP, and modern front-end frameworks.
+        </p>
+      </div>
+    </section>
+
+    <!-- SKILLS -->
+    <section id="skills" class="py-24">
+      <div class="max-w-4xl mx-auto px-6">
+        <h2 class="section-title">Technical Skills</h2>
+        <div class="mt-6 grid grid-cols-2 md:grid-cols-3 gap-4 text-purple-200">
+          <div class="p-4 rounded-md border border-purple-800/20">Python</div>
+          <div class="p-4 rounded-md border border-purple-800/20">C / C++</div>
+          <div class="p-4 rounded-md border border-purple-800/20">HTML / CSS / JS</div>
+          <div class="p-4 rounded-md border border-purple-800/20">React</div>
+          <div class="p-4 rounded-md border border-purple-800/20">Three.js</div>
+          <div class="p-4 rounded-md border border-purple-800/20">GSAP</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- EXPERIENCE -->
+    <section id="experience" class="py-24">
+      <div class="max-w-4xl mx-auto px-6">
+        <h2 class="section-title">Internship Experience</h2>
+        <p class="mt-4 text-purple-200">
+          CyberGyan (C-DAC & MEITY) — Performed vulnerability assessments, penetration testing,
+          and network security analysis using Wireshark, Kali Linux, and other tools.
+        </p>
+      </div>
+    </section>
+
+    <!-- CONTACT -->
+    <section id="contact" class="py-24 pb-48">
+      <div class="max-w-4xl mx-auto px-6 text-center">
+        <h2 class="section-title">Contact</h2>
+        <p class="mt-4 text-purple-200">Email: <a href="mailto:abhispj04@gmail.com">abhispj04@gmail.com</a></p>
+        <p class="mt-2 text-purple-200">Phone: +91 9430807084</p>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- Inline scripts -->
+  <script>
+  /* ===== Neon cursor ===== */
+  const cursor = document.getElementById('cursor');
+  const cursor2 = document.getElementById('cursor2');
+  document.addEventListener('mousemove', (e) => {
+    cursor.style.left = e.clientX + 'px';
+    cursor.style.top = e.clientY + 'px';
+    cursor2.style.left = e.clientX + 'px';
+    cursor2.style.top = e.clientY + 'px';
+  });
+  /* small click effect */
+  document.addEventListener('mousedown', () => {
+    gsap.to(cursor, { scale: 0.7, duration: 0.08, ease: "power2.out" });
+    gsap.to(cursor, { scale: 1, duration: 0.25, delay: 0.08, ease: "elastic.out(1,0.5)" });
+  });
+
+  /* ===== GSAP scroll reveal ===== */
+  gsap.registerPlugin(ScrollTrigger);
+  gsap.utils.toArray('section').forEach(s => {
+    gsap.from(s, {
+      opacity: 0,
+      y: 60,
+      duration: 1.2,
+      ease: 'power2.out',
+      scrollTrigger: { trigger: s, start: 'top 80%' }
+    });
+  });
+
+  /* ===== Three.js cyberpunk grid + hologram rings + spheres ===== */
+  const canvas = document.getElementById('three-bg');
+  const renderer = new THREE.WebGLRenderer({ canvas, alpha: true, antialias: true });
+  renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+  renderer.setSize(window.innerWidth, window.innerHeight);
+
+  const scene = new THREE.Scene();
+
+  const camera = new THREE.PerspectiveCamera(50, window.innerWidth / window.innerHeight, 0.1, 1000);
+  camera.position.set(0, 8, 30);
+
+  // ambient effect
+  const amb = new THREE.AmbientLight(0x7a4bff, 0.35);
+  scene.add(amb);
+
+  // neon grid floor (custom shader-like effect using lines)
+  const grid = new THREE.GridHelper(200, 80, 0x7f00ff, 0x220022);
+  grid.position.y = -6;
+  scene.add(grid);
+
+  // floating wireframe hologram sphere
+  const holoGeo = new THREE.SphereGeometry(3.6, 64, 64);
+  const holoMat = new THREE.MeshBasicMaterial({ color: 0x9d4bff, wireframe: true, transparent: true, opacity: 0.9 });
+  const hologram = new THREE.Mesh(holoGeo, holoMat);
+  hologram.position.set(0, 3, 0);
+  scene.add(hologram);
+
+  // rings around the hologram
+  const rings = [];
+  for (let i=0;i<3;i++){
+    const rgeo = new THREE.RingGeometry(3.8 + i*0.6, 4.4 + i*0.6, 128);
+    const rmat = new THREE.MeshBasicMaterial({ color: 0x7f00ff, side: THREE.DoubleSide, transparent:true, opacity:0.12 });
+    const ring = new THREE.Mesh(rgeo, rmat);
+    ring.rotation.x = Math.PI/2;
+    ring.position.y = 3;
+    scene.add(ring);
+    rings.push(ring);
+  }
+
+  // neon spheres
+  const spheres = [];
+  const sMat = new THREE.MeshBasicMaterial({ color: 0xa14bff });
+  for (let i=0;i<12;i++){
+    const s = new THREE.Mesh(new THREE.SphereGeometry(0.9, 24, 24), sMat.clone());
+    s.position.set((Math.random()-0.5)*28, Math.random()*8 - 1, (Math.random()-0.5)*28);
+    s.material.opacity = 0.95;
+    scene.add(s);
+    spheres.push(s);
+  }
+
+  // subtle camera parallax with mouse
+  let mouseX = 0, mouseY = 0;
+  document.addEventListener('mousemove', (e) => {
+    const nx = (e.clientX / innerWidth) * 2 - 1;
+    const ny = -(e.clientY / innerHeight) * 2 + 1;
+    mouseX = nx;
+    mouseY = ny;
+  });
+
+  function animate(){
+    requestAnimationFrame(animate);
+
+    // rotate hologram and rings
+    hologram.rotation.y += 0.007;
+    rings.forEach((r, idx) => r.rotation.z += 0.01 + idx*0.002);
+
+    // float spheres slowly
+    spheres.forEach((sp, idx) => {
+      sp.position.y += Math.sin(Date.now() * 0.001 + idx) * 0.002;
+    });
+
+    // camera subtle follow
+    camera.position.x += (mouseX * 6 - camera.position.x) * 0.03;
+    camera.position.y += (mouseY * 3 + 6 - camera.position.y) * 0.03;
+    camera.lookAt(0,2,0);
+
+    renderer.render(scene, camera);
+  }
+  animate();
+
+  window.addEventListener('resize', () => {
+    renderer.setSize(window.innerWidth, window.innerHeight);
+    camera.aspect = window.innerWidth/window.innerHeight;
+    camera.updateProjectionMatrix();
+  });
+
+  /* ===== Mobile optimizations =====
+     - Lower pixel ratio, stop some animations when tiny screens detected
+  */
+  function applyMobileTweaks(){
+    if (window.innerWidth < 700){
+      renderer.setPixelRatio(1);
+      // reduce sphere count by hiding some
+      spheres.forEach((s,i)=>{ if(i%2===0) s.visible=false });
+    } else {
+      renderer.setPixelRatio(Math.min(window.devicePixelRatio,2));
+      spheres.forEach(s=>s.visible=true);
+    }
+  }
+  applyMobileTweaks();
+  window.addEventListener('resize', applyMobileTweaks);
+  </script>
+
+</body>
+</html>
